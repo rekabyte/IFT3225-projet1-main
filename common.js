@@ -1,19 +1,23 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // Hide all games
+  // si JS est actif:
+
+  //on cache les 3 jeux
   document.getElementById("game1-content").style = "display: none;";
   document.getElementById("game2-content").style = "display: none;";
   document.getElementById("game3-content").style = "display: none;";
-  // Hide game actions
+
+  //on cache le quiz et ses boutons
   document.getElementById("game-actions").style = "display: none;";
 
-  // hide les informations du jeu , parce que JS is on!
+  //on cache les connaissances pck JS est actif
   const games = document.querySelectorAll(".information");
   games.forEach((game) => {
     game.style.display = "none";
   });
   
-  //activer le bouton de soumission:
+  //on active le bouton "soumettre reponse" qui etait disabled
   document.getElementById("submit-button").disabled = false;
+
   //rendre les boutons besoin d'aide + retour a l'accueil visibles:
   document.getElementById("help-button").style.display = "block";
   document.getElementById("back-button").style.display = "inline";
@@ -33,66 +37,72 @@ document
   .getElementById("game3-button")
   .addEventListener("click", () => showGame("game3"));
 
-  function showGame(gameId, questionsId) {
-    // hide menu
-    document.getElementById("menu").style.display = "none";
-    // show game content
-    document.getElementById(gameId).style.display = "block";
-    // show game actions
-    document.getElementById("game-actions").style.display = "block";
-  
-    // initialize game with the right questions
-    const questions = convertULToQuestionsArray(questionsId);
-    console.log(questions);
-  
-    initGame(questions);
-    
-    //definir les caracteres autorisees de l'input:
-    // Define the allowed characters of the input:
 
-    //console.log(gameId);
-    if (gameId === "game1-content") {
-      // If "game1" is active, set the pattern of "user-answer" to only allow a single digit
-      document.getElementById("user-answer").pattern = "[0-9]";
-    } else {
-      // If "game1" is not active, remove the pattern from "user-answer"
-      document.getElementById("user-answer").removeAttribute('pattern');
-    }
+function showGame(gameId, questionsId) {
 
-    
+  // cacher le menu
+  document.getElementById("menu").style.display = "none";
 
-    // on prend le div qui contient le titre du jeu, et on le met comme child du div du quiz:
-    var gameActions = document.getElementById("game-actions");
-    var firstChild = gameActions.firstChild;
-    var gameContent = document.getElementById(gameId);
-    gameActions.insertBefore(gameContent, firstChild)
+  // afficher le quiz
+  document.getElementById(gameId).style.display = "block";
+  // afficher les boutons
+  document.getElementById("game-actions").style.display = "block";
+
+  // convertir la data sur les jeux dans le html a des questions:
+  const questions = convertULToQuestionsArray(questionsId);
+
+  //console.log(questions);
+
+  //commencer une partie
+  initGame(questions);
   
-    // Pour le bouton help:
-    const helpContent = document.getElementById(gameId).querySelector(".information").cloneNode(true);
-    helpContent.style.display = "none"; // Cacher le contenu d'aide par défaut
-  
-    // Stocker une référence au titre du quiz
-    const titleNode = gameContent.querySelector("h2");
-  
-    // Gérer l'affichage/masquage du contenu d'aide lors du clic sur le bouton "Besoin d'aide ?"
-    const helpButton = document.getElementById('help-button');
-    let isHelpVisible = false; // Variable pour suivre l'état de l'affichage du contenu d'aide
-  
-    helpButton.addEventListener("click", () => {
-      isHelpVisible = !isHelpVisible; // Inverser l'état de l'affichage du contenu d'aide
-  
-      if (isHelpVisible) {
-        helpContent.style.display = "block"; // Afficher le contenu d'aide
-        helpButton.textContent = "Masquer l'aide"; // Changer le texte du bouton
-        document.getElementById("game-actions").appendChild(helpContent); // Ajouter le contenu d'aide à la fin des actions du jeu
-      } else {
-        helpContent.style.display = "none"; // Masquer le contenu d'aide
-        helpButton.textContent = "Besoin d'aide ?"; // Restaurer le texte du bouton
-        gameContent.insertBefore(titleNode, gameContent.firstChild); // Réinsérer le titre du quiz à sa place d'origine
-        document.getElementById("game-actions").removeChild(helpContent); // Retirer le contenu d'aide des actions du jeu
-      }
-    });
+  //definir les caracteres autorisees de l'input:
+  //console.log(gameId);
+  if (gameId === "game1-content") {
+    // si c'est game1, alors le jeu ne doit accepter que des chiffres
+    document.getElementById("user-answer").pattern = "[0-9]";
+  } else {
+    // sinon on enleve le pattern de l'input
+    document.getElementById("user-answer").removeAttribute('pattern');
   }
+
+    
+
+  // on prend le div qui contient le titre du jeu, et on le met comme child du div du quiz:
+  var gameActions = document.getElementById("game-actions");
+  var firstChild = gameActions.firstChild;
+  var gameContent = document.getElementById(gameId);
+  gameActions.insertBefore(gameContent, firstChild)
+
+  // pour le bouton besoin d'aide :
+  const helpContent = document.getElementById(gameId).querySelector(".information").cloneNode(true);
+  helpContent.style.display = "none"; // Cacher le contenu d'aide par défaut
+
+  // stocker une ref au titre du quiz
+  const titleNode = gameContent.querySelector("h2");
+
+  // gere l'affichage/masquage du div lorsqu'on clique sur `Besoin d'aide`
+  const helpButton = document.getElementById('help-button');
+  let isHelpVisible = false;
+
+  helpButton.addEventListener("click", () => {
+    isHelpVisible = !isHelpVisible;
+
+    //si on veut afficher l'aide:
+    if (isHelpVisible) {
+      helpContent.style.display = "block";
+      helpButton.textContent = "Masquer l'aide";
+      document.getElementById("game-actions").appendChild(helpContent);
+    }
+    //si on veut la cacher:
+    else {
+      helpContent.style.display = "none";
+      helpButton.textContent = "Besoin d'aide ?";
+      gameContent.insertBefore(titleNode, gameContent.firstChild);
+      document.getElementById("game-actions").removeChild(helpContent);
+    }
+  });
+}
   
 
 document
@@ -111,12 +121,14 @@ document
     showGame("game3-content", "game3-questions")
   );
 
+//demarre une partie, init ce qui est necessaire:
 function initGame(questions) {
   let score = 0;
   let timerInterval;
   let currentQuestionIndex = 0;
   const timeLimit = 30;
 
+  //genere une question aleatoire a partir du html et selon le jeu
   function generateQuestion() {
     currentQuestionIndex = Math.floor(Math.random() * questions.length);
     document.getElementById("tonality-question").textContent =
@@ -131,6 +143,7 @@ function initGame(questions) {
     );
   }
 
+  //gere ce qui se passe quand le timer finit
   function onTimerEnd() {
     const correctAnswer = questions[currentQuestionIndex].answer;
     showResult(
@@ -144,7 +157,7 @@ function initGame(questions) {
 
   let lastAnswerWasWrong = false;
 
-document.getElementById("alteration-form").addEventListener("submit", (e) => {
+  document.getElementById("alteration-form").addEventListener("submit", (e) => {
   e.preventDefault();
 
   // Disable the submit button
@@ -153,10 +166,12 @@ document.getElementById("alteration-form").addEventListener("submit", (e) => {
   clearInterval(timerInterval);
   const userAnswer = document.getElementById("user-answer").value;
   const correctAnswer = questions[currentQuestionIndex].answer;
-
+  
+  //si l'user tape la bonne reponse:
   if (
     userAnswer.trim().toLowerCase() === correctAnswer.trim().toLowerCase()
-  ) {
+  ) 
+  {
     score++;
     lastAnswerWasWrong = false;
     showResult(
@@ -169,7 +184,9 @@ document.getElementById("alteration-form").addEventListener("submit", (e) => {
         document.getElementById("score").textContent = `Score: ${score}`;
       }
     );
-  } else {
+  } 
+  //si l'user tape une mauvaise reponse:
+  else {
     lastAnswerWasWrong = true;
     showResult(
       document.getElementById("result"),
@@ -184,7 +201,10 @@ document.getElementById("alteration-form").addEventListener("submit", (e) => {
   document.getElementById("score").textContent = `Score: ${score}`;
 });
 
+//gere ce qui se passe quand on appuie sur Replay:
+//rejouer permet de passer a la prochaine question:
 document.getElementById("replay").addEventListener("click", () => {
+  //remet une nouvelle question:
   document.getElementById("result").textContent = "";
   generateQuestion();
   timerInterval = resetTimer(
@@ -201,10 +221,10 @@ document.getElementById("replay").addEventListener("click", () => {
   }
   
 
-  // Enable the submit button
+  //activer le bouton soumettre reponse
   document.getElementById("submit-button").disabled = false;
 
-  // Reset the score if the last answer was wrong
+  //on reset le score si la derniere reponse etait fausse:
   if (lastAnswerWasWrong) {
     score = 0;
     document.getElementById("score").textContent = `Score: ${score}`;
@@ -221,6 +241,7 @@ document.getElementById("replay").addEventListener("click", () => {
   );
 }
 
+//fonction permet de reset le timer selon le parametre timerInterval
 function resetTimer(timerElement, timerInterval, initialTime, onTimeOut) {
   clearInterval(timerInterval);
   let timeLeft = initialTime;
@@ -236,6 +257,7 @@ function resetTimer(timerElement, timerInterval, initialTime, onTimeOut) {
   }, 1000);
 }
 
+//affiche le resultat du score dans son element correspondant
 function showResult(
   resultElement,
   isCorrect,
@@ -266,25 +288,27 @@ function showResult(
   }
 }
 
+//cette fonction prend la data dans laquelle est stockee les infos sur le jeu,
+//puis les convertit en array:
 function convertULToQuestionsArray(ulElementId) {
-  // Create a virtual DOM element to parse the HTML string
+  // on recupere la data
   const ulElement = document.getElementById(ulElementId);
   if (!ulElement) {
     console.error("UL element not found");
     return [];
   }
 
-  // Map over each list item to extract the question and answer
+  // puis on map chaque question a sa reponse
   const questions = Array.from(ulElement.querySelectorAll("li")).map((li) => {
     const fullText = li.textContent.trim().replace("\n", "").replace(":", "?");
     const answer = li.querySelector("b")
       ? li.querySelector("b").textContent.trim()
       : "";
 
-    // Remove the answer part from the full text to get the question
+    // on remove la reponse
     const query = fullText.replace(answer, "").trim();
 
-    // Return the question object
+    // puis on retourne tout ca
     return { query, answer };
   });
 
