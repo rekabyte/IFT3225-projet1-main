@@ -45,6 +45,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });
 
+//pour la barre de navigation:
+function afficherAccueil() {
+  document.querySelector('.principal').style.display = 'block';
+  document.querySelector('.about').style.display = 'none';
+}
+
+function afficherAbout() {
+  document.querySelector('.principal').style.display = 'none';
+  document.querySelector('.about').style.display = 'flex';
+}
+
 //cette fonction change la direction de l'arrow 
 // a chaque fois qu'on clique sur le bouton besoin d'aide
 let toggled = true;
@@ -94,7 +105,7 @@ function chooseGame(gameId) {
 //Convertit la data html du jeu selectionnee (choosenGameId)
 // en dictionnaire (questionsReponses)
 function generateQuestions() {
-  console.log(`generation pour .${choosenGameId}-game table tbody ...`);
+  //console.log(`generation pour .${choosenGameId}-game table tbody ...`);
   let game_tbody = document.querySelector(`.${choosenGameId}-game table tbody`);
   questionsReponses = {};
 
@@ -140,7 +151,7 @@ function startGame() {
 
   //verifier si un type de jeu a ete choisi:
   if(choosenGameId != null) {
-    console.log("Debut de game...");
+    //console.log("Debut de game...");
 
     score = 0;
     score_span.textContent = "0";
@@ -168,8 +179,8 @@ function startGame() {
     //on demarre le compteur:
     timerId = startTimer();
 
-    console.log(`Cle aleatoire : ${randomQuestion}`);
-    console.log(`Valeur aleatoire : ${reponse}`);
+    //console.log(`Cle aleatoire : ${randomQuestion}`);
+    //console.log(`Valeur aleatoire : ${reponse}`);
 
     //si le jeu est un jeu de type radio
     if(choosenGameId != 'game1') {
@@ -247,8 +258,8 @@ async function validerReponse() {
 
     //si mauvaise reponse:
     else {
-      console.log("mauvaise reponse");
-      console.log(`Attendu: ${reponse}, Recu; ${input.textContent}`)
+      //console.log("mauvaise reponse");
+      //console.log(`Attendu: ${reponse}, Recu; ${input.textContent}`)
       stopTimer(timerId);
       showLostScreen();
     }
@@ -320,14 +331,14 @@ async function validerReponse() {
 
     //si mauvaise reponse
     else {
-      console.log("mauvaise reponse");
-      console.log(`Attendu: ${reponse}, Recu; ${input.textContent}`)
+      //console.log("mauvaise reponse");
+      //console.log(`Attendu: ${reponse}, Recu; ${input.textContent}`)
       stopTimer(timerId);
       showLostScreen();
     }
 
 
-    console.log("texte du label associee au bouton radio selectionnee :", labelText);
+    //console.log("texte du label associee au bouton radio selectionnee :", labelText);
   }
 
   
@@ -393,7 +404,7 @@ function startTimer() {
     //verifier si le temps s'est fini:
     if (tempsEcoule >= totalMilliseconds) {
       clearInterval(progressInterval);
-      console.log("Temps écoulé!");
+      //console.log("Temps écoulé!");
       showLostScreen();
     }
   }

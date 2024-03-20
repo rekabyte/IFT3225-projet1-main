@@ -142,7 +142,6 @@ button[active] {
     border-radius: 10px;
     margin: auto;
     margin-top: 40px;
-    padding: 30px;
     padding-bottom: 0px;
     max-width: 1060px;
     height: 450px;
@@ -151,15 +150,14 @@ button[active] {
 .div-quiz-contenu {
     width: 100%;
     height: 100%;
+    margin: 20px;
 }
 
 .bonne-reponse {
     background-color: green;
     border-radius: 7px;
-    margin-left: -3%;
-    margin-top: -3%;
-    width: 106%;
-    height: 107%;
+    width: 100%;
+    height: 100%;
     display: flex;
     align-items: center;
     display: none;
@@ -295,4 +293,15 @@ td {
 
 .empty-row {
     color: transparent !important;
+}
+
+/** A propos **/
+.about {
+    display: none;
+    flex-direction: column;
+}
+
+.about p {
+    margin: auto;
+    font-family: 'Gabarito', sans-serif;
 }
