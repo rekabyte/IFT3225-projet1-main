@@ -5,6 +5,7 @@ body {
     background-color: black;
     font-family: 'Koulen' ,sans-serif;
     color: white;
+    width: 100%;
 }
 
 p, a, h2, h3, label {
@@ -124,9 +125,9 @@ hr {
 .div-jeux-boutons button{
     background-color: #6E3B45;
     border-color: #6E3B45;
-    width: 350px;
-    max-width: 400px;
-    min-width: none;
+    width: 300px;
+    max-width: 350px;
+    min-width: 100px;
     height: 70px;
     margin-top: 40px;
 }
@@ -211,7 +212,7 @@ button[active] {
 
 .div-soumission button, .div-soumission input {
     height: 35px;
-    width: 350px;
+    max-width: 350px;
 }
 
 .div-soumission button {
@@ -244,7 +245,7 @@ button[active] {
 .div-time {
     margin: auto;
     margin-top: 20px;
-    width: 510px;
+    width: 70%;
     height: 10px;
 }
 
