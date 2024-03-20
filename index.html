@@ -62,29 +62,74 @@
 
         <!-- Bouton commencer -->
         <p>Choisissez un jeu, puis cliquez sur commencer</p>
-        <button type="button" class="py-3 px-5">COMMENCER !</button>
+        <button type="button" class="py-3 px-5" onclick="startGame()">COMMENCER !</button>
 
         <!-- Selection de jeux -->
         <div class="div-jeux-boutons mx-5">
-         <button type="button">Jeu des Alterations</button>
-         <button type="button">Jeu de Reconnaissance de Tonalité</button>
-         <button type="button">Jeu des Relations Tonales</button>
+         <button type="button" onclick="chooseGame('game1')">Jeu des Alterations</button>
+         <button type="button" onclick="chooseGame('game2')">Jeu de Reconnaissance de Tonalité</button>
+         <button type="button" onclick="chooseGame('game3')">Jeu des Relations Tonales</button>
         </div>
 
         <!-- Div du quiz (formulaire / questions / soumission) -->
         <div class="div-quiz">
+          
+          <div class="bonne-reponse">
+            <p>Bonne reponse !</p>
+          </div>
 
-          <!-- Titre du jeu -->
-          <h3 class="mx-2 h1">Jeu <span>(Activez JS pour commencer)</span></h3>
+          <div class="mauvaise-reponse">
+            <p>Mauvaise reponse !</p>
+            <p>Score : 0</p>
+            <p>Rejouez en cliquant sur 'Commencer'</p>
+          </div>
+
+          <!-- Contenu du quiz -->
+          <div class="div-quiz-contenu">
+            <!-- Titre du jeu -->
+          <h3 class="nom-jeu mx-2 h1">Jeu <span>(Activez JS pour commencer)</span></h3>
           
           <!-- Question -->
-          <p class="placeholder-wave ">
+          <p class="placeholder-glow ">
             Question:
             <br>
-            <span id="question" class="placeholder w-50"></span>
+            <span class="question"></span>
+            <span class="placeholder w-25"></span>
+            <span class="placeholder w-25"></span>
+            <br>
+            <span class="placeholder w-25"></span>
           </p>
 
-          <!-- Formulaire : Input + soumission -->
+          <!-- Formulaire radio : Input + soumission -->
+          <form class="form-radio">
+
+            <!-- label de l'input -->
+            <label for="soumettre">Votre réponse:</label>
+
+            <!-- Inputs radios -->
+            <div>
+              <input id ="radio-1" type="radio" name="radioGroupe"/>
+              <label class="label-1" for="radio-1" >Reponse 1</label>
+
+              <input id ="radio-2" type="radio" name="radioGroupe" />
+              <label class="label-2" for="radio-2" >Reponse 2</label>
+
+              <input id ="radio-3" type="radio" name="radioGroupe" />
+              <label class="label-3" for="radio-3" >Reponse 3</label>
+
+              <input id ="radio-4" type="radio" name="radioGroupe" />
+              <label class="label-4" for="radio-4" >Reponse 4</label>
+
+              <input id ="radio-5" type="radio" name="radioGroupe" />
+              <label class="label-5" for="radio-5" >Reponse 5</label>
+
+              <button type="button" onclick="validerReponse()">Valider</button>
+            </div>
+
+
+          </form>
+
+          <!-- Formulaire normal : Input + soumission -->
           <form class="formulaire">
 
             <!-- label de l'input -->
@@ -93,7 +138,7 @@
             <!-- input + soumission -->
             <div class="div-soumission">
               <input type="text" id="soumettre" name="soumettre" placeholder="Réponse..." />
-              <button type="submit">Valider</button>
+              <button type="button" onclick="validerReponse()">Valider</button>
             </div>
 
           </form>
@@ -105,19 +150,24 @@
           <label>Temps restant...</label>
 
           <!-- Score -->
-          <p class="score my-5">Score : 0</p>
+          <p class="score my-5">Score : <span class="span-score">0</span></p>
+          </div>
 
         </div>
 
         <!-- Affichage aide + connaissances du quiz -->
         <div class="div-aide">
-          <button type="button" class="button-aide">Besoin d'aide ?</button>
 
+          <button type="button" class="button-aide" onclick="changeArrowDirection()" data-bs-toggle="collapse" data-bs-target="#collapse">
+            Besoin d'aide ? <span class="upArrow"> ˄</span>
+          </button>
+        </div>
+        <div class="aChanger" id="collapse">
           <!-- Grid pour afficher les connaissances -->
           <div class="div-conaissances">
 
             <!-- Jeu 1 -->
-            <div class="alteration-game">
+            <div class="game1-game">
               <h4 class="mb-4">Jeu d'alteration</h4>
               <table class="table table-dark table-striped table-hover">
                 <thead><tr><th scope="col">Question</th><th scope="col">Reponse</th></tr></thead>
@@ -141,7 +191,7 @@
             </div>
             
             <!-- Jeu 2 -->
-            <div class="reconnaissance-game">
+            <div class="game2-game">
               <h4 class="mb-4">Jeu de reconnaissance de tonalite</h4>
               <table class="table table-dark table-striped table-hover">
                 <thead><tr><th scope="col">Question</th><th scope="col">Reponse</th></tr></thead>
@@ -165,7 +215,7 @@
             </div>
 
             <!-- Jeu 3 -->
-            <div class="relation-game">
+            <div class="game3-game">
               <h4 class="mb-4">Jeu des relations tonales</h4>
               <table class="table table-dark table-striped table-hover">
                 <thead><tr><th scope="col">Question</th><th scope="col">Reponse</th></tr></thead>
@@ -194,5 +244,9 @@
 
       </div>
     </section>
+
+    <!-- Script JS de BS + notre code -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="common.js"></script>
   </body>
 </html>
