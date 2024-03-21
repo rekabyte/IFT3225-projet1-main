@@ -55,28 +55,152 @@ hr {
     border-width: 3px;
 }
 
-/* mot `Cycle` en gradient*/
-.cycle-word {
-    background-image: linear-gradient(120deg, red, fuchsia, white);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+#game-actions {
+    max-width: 600px; /* Définir une largeur maximale */
+    margin: 0 auto; /* Centrer la zone horizontalement */
+}
+
+
+#game-content {
+    width: 80%;
+    max-width: 600px;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #333;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+#game-content h2 {
+    color: red;
+}
+
+#game-content ul {
+    text-align: left;
+}
+
+#alteration-form {
+    margin-top: 20px;
+}
+
+#user-answer {
+    padding: 10px;
+    border: 2px solid red;
+    border-radius: 5px;
+    color: black;
+}
+
+#submit-button, #replay {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+#submit-button:hover, #replay:hover {
+    background-color: darkred;
+}
+
+#submit-button:disabled {
+    background-color: darkgrey;
+    cursor: not-allowed;
+}
+
+#result {
+    margin-top: 20px;
     font-weight: bold;
 }
 
+#score, #timer {
+    margin-top: 10px;
+}
+
+#menu {
+    text-align: center;
+    padding: 20px;
+}
+
+#menu h1 {
+    color: white;
+}
+
+#menu ul {
+    list-style: none;
+    padding: 0;
+}
+
+#menu li {
+    margin: 10px 0;
+}
+
+#menu a {
+    text-decoration: none;
+    color: red;
+    font-size: 20px;
+}
+
+#menu a:hover {
+    color: darkred;
+}
+
+#back-button {
+    background-color: grey;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    margin-top: 20px;
+    cursor: pointer;
+    display: none;
+}
+
+#back-button:hover, #help-button:hover{
+    background-color: darkgrey;
+}
+
+#help-button {
+    background-color: grey;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    margin-top: 20px;
+    cursor: pointer;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    display: none;
+}
+
+
+/** A propos **/
+.about {
+    display: none;
+    flex-direction: column;
+}
+
+.about p {
+    margin: auto;
+    font-family: 'Gabarito', sans-serif;
+}
+
 /* Introduction*/
-.introduction {
+#introduction {
     text-align: center;
     margin-top: 50px;
 }
 
-.introduction h2 {
+#introduction h2 {
     color: white;
     margin: 50px;
     letter-spacing: 6px;
 }
 
-.introduction p {
+#introduction p {
     color: white;
     font-weight: bold;
     font-size: large;
@@ -86,15 +210,15 @@ hr {
 }
 
 /** Bouton commencer **/
-.div-start {
+#menu {
     text-align: center;
 }
 
-.div-start p {
+#menu p {
     letter-spacing: 2px;
 }
 
-.div-start button {
+#menu button {
     color: white;
     font-weight: bold;
     font-size: large;
@@ -104,19 +228,19 @@ hr {
     border-style: solid;
 }
 
-.div-start button:disabled,
-.div-start button:disabled:hover {
+#menu button:disabled,
+#menu button:disabled:hover {
     background-color: grey;
     cursor: not-allowed;
 }
 
 
-.div-start button:hover {
+#menu button:hover {
     color: rgb(255, 255, 255);
     background-color: rgb(72, 18, 18);
 }
 
-.div-start button:active {
+#menu button:active {
     background-color: rgb(36, 9, 9);
 }
 
@@ -136,173 +260,36 @@ button[active] {
     background-color: rgb(36, 9, 9);
 }
 
-/** Quiz **/
-.div-quiz {
-    border-color: rgba(255, 255, 255, 0.328);
-    border-style: solid;
+#menu button {
+    color: white;
+    font-weight: bold;
+    font-size: large;
+    background-color: brown;
+    border-color: brown;
     border-radius: 10px;
-    margin: auto;
-    margin-top: 40px;
-    padding-bottom: 0px;
-    max-width: 1060px;
-    height: 450px;
+    border-style: solid;
 }
 
-.div-quiz-contenu {
-    width: 100%;
-    height: 100%;
-    margin: 20px;
-}
-
-.bonne-reponse {
-    background-color: green;
-    border-radius: 7px;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    display: none;
-}
-
-.bonne-reponse p {
-    margin: auto;
-    font-size: 5em;
-}
-
-.mauvaise-reponse {
-    background-color: red;
-    border-radius: 7px;
-    margin-left: -3%;
-    margin-top: -3%;
-    padding-top: 10%;
-    width: 106%;
-    height: 107%;
-    display: none;
-}
-
-.mauvaise-reponse p:first-child {
-    margin: auto;
-    font-size: 4em;
-}
-
-.mauvaise-reponse p:nth-child(2) {
-    margin: auto;
-    font-size: 2em;
-}
-
-.div-quiz h3 {
-    text-align: left;
-}
-
-.div-quiz h3 span{
-    font-size: 30px;
-}
-
-/** Formulaire **/
-.formulaire {
-    display: flex;
-    flex-direction: column;
-}
-
-.formulaire label {
-    font-size: 15px;
-    margin-bottom: 5px;
-    margin-top: 30px;
-}
-
-.div-soumission button, .div-soumission input {
-    height: 35px;
-    max-width: 350px;
-}
-
-.div-soumission button {
-    border-radius: 4px;
-    width: 150px;
-}
-
-/** Formulaire radio **/
-.form-radio {
-    display: none;
-}
-
-.form-radio div {
-    margin-top: 10px;
-}
-
-.form-radio div label {
-    
-    margin-right: 30px;
-}
-
-.form-radio div button {
-    display: block;
-    margin: auto;
-    margin-top: 20px;
-}
-
-
-/** Temps restant **/
-.div-time {
-    margin: auto;
-    margin-top: 20px;
-    width: 70%;
-    height: 10px;
-}
-
-.progress-bar {
-    width: 100%;
-    background-color: green;
-    transition: width .01s linear;
-}
-
-/** Bouton d'aide **/
-button.button-aide {
+#menu button:disabled,
+#menu button:disabled:hover {
     background-color: grey;
-    border-style: none;
-    margin: 60px;
-    padding: 10px;
+    cursor: not-allowed;
 }
 
-button.button-aide:hover {
-    background-color: rgb(92, 92, 92);
-    padding: 10px;
+
+#menu button:hover {
+    color: rgb(255, 255, 255);
+    background-color: rgb(72, 18, 18);
 }
 
-.upArrow {
-    display: inline-block;
-    transform: rotate(180deg);
-    transition: transform 0.3s ease;
+#menu button:active {
+    background-color: rgb(36, 9, 9);
 }
 
-/** Connaissances **/
-
-.div-conaissances {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-.game1-game , .game2-game, .game3-game {
-    margin: 50px;
-    flex: 200px;
-}
-
-td {
-    text-align: left;
-    
-}
-
-.empty-row {
-    color: transparent !important;
-}
-
-/** A propos **/
-.about {
-    display: none;
-    flex-direction: column;
-}
-
-.about p {
-    margin: auto;
-    font-family: 'Gabarito', sans-serif;
+.cycle-word {
+    background-image: linear-gradient(120deg, red, fuchsia, white);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-weight: bold;
 }

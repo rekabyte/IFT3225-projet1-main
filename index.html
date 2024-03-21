@@ -1,259 +1,338 @@
 <!DOCTYPE html>
 <html lang="fr">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Jeu des Altérations</title>
 
-    <!-- Pour BS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" 
-    rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" 
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jeu des Altérations</title>
+  <!-- Pour BS -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
     crossorigin="anonymous">
 
-    <!-- Pour font -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Koulen&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Gabarito:wght@400..900&display=swap" rel="stylesheet">
+  <!-- Pour font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Koulen&display=swap"
+    rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Gabarito:wght@400..900&display=swap"
+    rel="stylesheet">
 
-    <link rel="stylesheet" href="style.css" />
-  </head>
+  <link rel="stylesheet" href="style.css" />
+</head>
 
-  <body>
-    <!-- Barre de navigation -->
-    <nav class="navbar navbar-expand-lg m-2 mx-5">
+<body>
+  <!-- Barre de navigation -->
+  <nav class="navbar navbar-expand-lg m-2 mx-5">
 
-      <div class="container-fluid">
+    <div class="container-fluid">
 
-        <a class="navbar-brand" href="#">Jeux Musicaux</a>
+      <a class="navbar-brand" href="#">Jeux Musicaux</a>
 
-        <div class="collapse navbar-collapse justify-content-center div-nav-items" id="navbarNavAltMarkup">
+      <div class="collapse navbar-collapse justify-content-center div-nav-items"
+        id="navbarNavAltMarkup">
 
-          <div class="navbar-nav">
-            <a class="nav-link" href="#" onclick="afficherAccueil()">Accueil</a>
-            <a class="nav-link" href="#" onclick="afficherAbout()">A propos</a>
-          </div>
-
+        <div class="navbar-nav">
+          <a class="nav-link" href="#" onclick="afficherAccueil()">Accueil</a>
+          <a class="nav-link" href="#" onclick="afficherAbout()">A propos</a>
         </div>
 
       </div>
 
-    </nav>
-    <hr class="mx-5"/>
-
-    <div class="about">
-      <p>Site realisé pour le projet 1 du cours de technologie d'internet.</p>
-      <p>Ce site n'utilise que JavaScript + BootStrap pour quelques éléments</p>
     </div>
 
-    <div class="principal">
-      <!-- Contenu actuel -->
-      <!-- Introduction du site -->
-      <header>
-        <div class="introduction">
-          <h2><span class="cycle-word">Cycle</span> des quintes</h2>
-          <p>
-            Vous connaissez le cycle des quintes, mais vous n'avez jamais eu l'occasion de demontrer votre niveau ?
-            <br/>Votre famille et vos amis refusent de croire que vous etes bon ?
-            <br/>Ne vous en faites pas, on a le site parfait pour vous 😎
-          </p>
-        </div>
-      </header>
+  </nav>
+  <hr class="mx-5" />
 
-      <!-- Section du quiz -->
-      <section>
+  <header id="introduction">
+    <h2><span class="cycle-word">Cycle</span> des quintes</h2>
+    <p>
+      Vous connaissez le cycle des quintes, mais vous n'avez jamais eu
+      l'occasion de demontrer votre niveau ?
+      <br />Votre famille et vos amis refusent de croire que vous etes bon ?
+      <br />Ne vous en faites pas, on a le site parfait pour vous 😎
+    </p>
 
-        <!-- Div du quiz -->
-        <div class="div-start my-5 py-5">
+  </header>
 
-          <!-- Bouton commencer -->
-          <p>Choisissez un jeu, puis cliquez sur commencer</p>
-          <button type="button" class="py-3 px-5" onclick="startGame()">COMMENCER !</button>
-
-          <!-- Selection de jeux -->
-          <div class="div-jeux-boutons mx-5">
-          <button type="button" onclick="chooseGame('game1')">Jeu des Alterations</button>
-          <button type="button" onclick="chooseGame('game2')">Jeu de Reconnaissance de Tonalité</button>
-          <button type="button" onclick="chooseGame('game3')">Jeu des Relations Tonales</button>
-          </div>
-
-          <!-- Div du quiz (formulaire / questions / soumission) -->
-          <div class="div-quiz">
-            
-            <div class="bonne-reponse">
-              <p>Bonne reponse !</p>
-            </div>
-
-            <div class="mauvaise-reponse">
-              <p>Mauvaise reponse !</p>
-              <p>Score : 0</p>
-              <p>Rejouez en cliquant sur 'Commencer'</p>
-            </div>
-
-            <!-- Contenu du quiz -->
-            <div class="div-quiz-contenu">
-              <!-- Titre du jeu -->
-            <h3 class="nom-jeu mx-2 h1">Jeu <span>(Activez JS pour commencer)</span></h3>
-            
-            <!-- Question -->
-            <p class="placeholder-glow ">
-              Question:
-              <br>
-              <span class="question"></span>
-              <span class="placeholder w-25"></span>
-              <span class="placeholder w-25"></span>
-              <br>
-              <span class="placeholder w-25"></span>
-            </p>
-
-            <!-- Formulaire radio : Input + soumission -->
-            <form class="form-radio">
-
-              <!-- label de l'input -->
-              <label for="soumettre">Votre réponse:</label>
-
-              <!-- Inputs radios -->
-              <div>
-                <input id ="radio-1" type="radio" name="radioGroupe"/>
-                <label class="label-1" for="radio-1" >Reponse 1</label>
-
-                <input id ="radio-2" type="radio" name="radioGroupe" />
-                <label class="label-2" for="radio-2" >Reponse 2</label>
-
-                <input id ="radio-3" type="radio" name="radioGroupe" />
-                <label class="label-3" for="radio-3" >Reponse 3</label>
-
-                <input id ="radio-4" type="radio" name="radioGroupe" />
-                <label class="label-4" for="radio-4" >Reponse 4</label>
-
-                <input id ="radio-5" type="radio" name="radioGroupe" />
-                <label class="label-5" for="radio-5" >Reponse 5</label>
-
-                <button type="button" onclick="validerReponse()">Valider</button>
-              </div>
-
-
-            </form>
-
-            <!-- Formulaire normal : Input + soumission -->
-            <form class="formulaire">
-
-              <!-- label de l'input -->
-              <label for="soumettre">Votre réponse:</label>
-
-              <!-- input + soumission -->
-              <div class="div-soumission">
-                <input type="number" id="soumettre" name="soumettre" placeholder="Réponse..." pattern="[0-9]{1}"/>
-                <button type="button" onclick="validerReponse()">Valider</button>
-              </div>
-
-            </form>
-
-            <!-- Barre de temps restant -->
-            <div class="div-time progress">
-              <div class="progress-bar"></div>
-            </div>
-            <label>Temps restant...</label>
-
-            <!-- Score -->
-            <p class="score my-5">Score : <span class="span-score">0</span></p>
-            </div>
-
-          </div>
-
-          <!-- Affichage aide + connaissances du quiz -->
-          <div class="div-aide">
-
-            <button type="button" class="button-aide" onclick="changeArrowDirection()" data-bs-toggle="collapse" data-bs-target="#collapse">
-              Besoin d'aide ? <span class="upArrow"> ˄</span>
-            </button>
-          </div>
-          <div class="aChanger" id="collapse">
-            <!-- Grid pour afficher les connaissances -->
-            <div class="div-conaissances">
-
-              <!-- Jeu 1 -->
-              <div class="game1-game">
-                <h4 class="mb-4">Jeu d'alteration</h4>
-                <table class="table table-dark table-striped table-hover">
-                  <thead><tr><th scope="col">Question</th><th scope="col">Reponse</th></tr></thead>
-                  <tbody>
-                    <tr><td>Nombre de dièses dans la gamme de La majeur</td><td>3</td></tr>
-                    <tr><td>Nombre de bémols dans la gamme de Mi♭ majeur</td><td>3</td></tr>
-                    <tr><td>Nombre de bémols dans la gamme de Si♭ majeur</td><td>2</td></tr>
-                    <tr><td>Nombre de bémols dans la gamme de Do♭ majeur</td><td>7</td></tr>
-                    <tr><td>Nombre de dièses dans la gamme de Fa majeur</td><td>1</td></tr>
-                    <tr><td>Nombre de bémols dans la gamme de Fa♭ majeur</td><td>6</td></tr>
-                    <tr><td>Nombre de bémols dans la gamme de Mi♭ majeur</td><td>3</td></tr>
-                    <tr><td>Nombre de bémols dans la gamme de Si♭ mineur</td><td>5</td></tr>
-                    <tr><td>Nombre de dièses dans la gamme de Sol♭ majeur</td><td>6</td></tr>
-                    <tr><td>Nombre de bémols dans la gamme de La majeur</td><td>3</td></tr>
-                    <tr><td>Nombre de dièses dans la gamme de Ré♭ majeur</td><td>5</td></tr>
-                    <tr><td>Nombre de bémols dans la gamme de Fa mineur</td><td>4</td></tr>
-                    <tr><td>Nombre de dièses dans la gamme de Ré mineur</td><td>5</td></tr>
-                    <tr><td>Nombre de bémols dans la gamme de Ré♭ mineur</td><td>6</td></tr>
-                  </tbody>
-                </table>
-              </div>
-              
-              <!-- Jeu 2 -->
-              <div class="game2-game">
-                <h4 class="mb-4">Jeu de reconnaissance de tonalite</h4>
-                <table class="table table-dark table-striped table-hover">
-                  <thead><tr><th scope="col">Question</th><th scope="col">Reponse</th></tr></thead>
-                  <tbody>
-                    <tr><td>Tonalité majeure avec 3 dièses</td><td>La majeur</td></tr>
-                    <tr><td>Tonalités sans altération à la clé</td><td>Do majeur, La mineur</td></tr>
-                    <tr><td>Tonalité mineure avec 1 dièse</td><td>Mi mineur</td></tr>
-                    <tr><td>Tonalité majeure avec 4 dièses</td><td>Mi majeur</td></tr>
-                    <tr><td>Tonalité mineure avec 2 bémols</td><td>Sol mineur</td></tr>
-                    <tr><td>Tonalité majeure avec 5 bémols</td><td>Des majeur</td></tr>
-                    <tr><td>Tonalités avec 1 bémol à la clé</td><td>Fa majeur, Ré mineur</td></tr>
-                    <tr><td>Tonalités avec 2 bémols à la clé</td><td>Sib majeur, Sol mineur</td></tr>
-                    <tr><td>Tonalités avec 3 dièses à la clé</td><td>La majeur, Fa# mineur</td></tr>
-                    <tr><td>Tonalités avec 3 bémols à la clé</td><td>Mib majeur, Do mineur</td></tr>
-                    <tr><td class="empty-row">a</td><td class="empty-row">a</td></tr>
-                    <tr><td class="empty-row">a</td><td class="empty-row">a</td></tr>
-                    <tr><td class="empty-row">a</td><td class="empty-row">a</td></tr>
-                    <tr><td class="empty-row">a</td><td class="empty-row">a</td></tr>
-                  </tbody>
-                </table>
-              </div>
-
-              <!-- Jeu 3 -->
-              <div class="game3-game">
-                <h4 class="mb-4">Jeu des relations tonales</h4>
-                <table class="table table-dark table-striped table-hover">
-                  <thead><tr><th scope="col">Question</th><th scope="col">Reponse</th></tr></thead>
-                  <tbody>
-                    <tr><td>Relative majeure de La mineur</td><td>Do majeur</td></tr>
-                    <tr><td>Relative mineure de Sib majeur</td><td>Sol mineur</td></tr>
-                    <tr><td>Relative majeure de Ré mineur</td><td>Fa majeur</td></tr>
-                    <tr><td>Relative mineure de Sol majeur</td><td>Mi mineur</td></tr>
-                    <tr><td>Relative majeure de Mi mineur</td><td>Sol majeur</td></tr>
-                    <tr><td>Relative mineure de Fa majeur</td><td>Ré mineur</td></tr>
-                    <tr><td>Relative majeure de Fa# mineur</td><td>La majeur</td></tr>
-                    <tr><td>Relative mineure de Mib majeur</td><td>Do mineur</td></tr>
-                    <tr><td>Relative majeure de Si mineur</td><td>Ré majeur</td></tr>
-                    <tr><td>Relative mineure de Do majeur</td><td>La mineur</td></tr>
-                    <tr><td class="empty-row">a</td><td class="empty-row">a</td></tr>
-                    <tr><td class="empty-row">a</td><td class="empty-row">a</td></tr>
-                    <tr><td class="empty-row">a</td><td class="empty-row">a</td></tr>
-                    <tr><td class="empty-row">a</td><td class="empty-row">a</td></tr>
-                  </tbody>
-                </table>
-                </div>
-              </div>
-
-            </div>
-          </div>
-
-        </div>
-      </section>
+  <section class="principal">
+    <div id="menu">
+      <p>Choisissez un jeu</p>
+      <!-- Selection de jeux -->
+      <div class="div-jeux-boutons mx-5">
+        <button type="button" id="game1-button">Jeu des
+          Alterations</button>
+        <button type="button" id="game2-button" class="mx-2">Jeu de
+          Reconnaissance de Tonalité</button>
+        <button type="button" id="game3-button">Jeu des Relations
+          Tonales</button>
+      </div>
     </div>
 
-    <!-- Script JS de BS + notre code -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="common.js"></script>
-  </body>
+    <div class="d-flex justify-content-center align-items-center">
+      <div id="game1-content">
+        <h2 style="text-align: center;">Jeu des Altérations</h2>
+        <div class="information">
+          <h6>Informations sur les Tonaliés Musicales</h3>
+            <table class="table table-dark table-striped table-hover">
+              <thead>
+                <tr>
+                  <th scope="col">Question</th>
+                  <th scope="col">Reponse</th>
+                </tr>
+              </thead>
+              <tbody id="game1-questions">
+                <tr>
+                  <td>Nombre de dièses dans la gamme de La majeur
+                  </td>
+                  <td>3</td>
+                </tr>
+                <tr>
+                  <td>
+                    Nombre de bémols dans la gamme de Mi♭ majeur
+                  </td>
+                  <td>3</td>
+                </tr>
+                <tr>
+                  <td>
+                    Nombre de bémols dans la gamme de Si♭ majeur
+                  </td>
+                  <td>2</td>
+                </tr>
+                <tr>
+                  <td>
+                    Nombre de bémols dans la gamme de Fa♭ majeur
+                  </td>
+                  <td>6</td>
+                </tr>
+                <tr>
+                  <td>
+                    Nombre de bémols dans la gamme de Mi♭ majeur
+                  </td>
+                  <td>3</td>
+                </tr>
+                <tr>
+                  <td>
+                    Nombre de bémols dans la gamme de Si♭ mineur
+                  </td>
+                  <td>5</td>
+                </tr>
+                <tr>
+                  <td>
+                    Nombre de dièses dans la gamme de Sol♭ majeur
+                  </td>
+                  <td>6</td>
+                </tr>
+                <tr>
+                  <td>
+                    Nombre de bémols dans la gamme de La majeur
+                  </td>
+                  <td>3</td>
+                </tr>
+                <tr>
+                  <td>
+                    Nombre de dièses dans la gamme de Ré♭ majeur
+                  </td>
+                  <td>5</td>
+                </tr>
+                <tr>
+                  <td>
+                    Nombre de bémols dans la gamme de Fa mineur
+                  </td>
+                  <td>4</td>
+                </tr>
+
+                
+              </tbody>
+            </table>
+        </div>
+      </div>
+
+      <div id="game2-content" class="mx-5">
+        <h2>Jeu de Reconnaissance de Tonalité</h2>
+        <div class="information">
+          <h6>Informations sur les Tonaliés Musicales</h3>
+            <table class="table table-dark table-striped table-hover">
+              <thead>
+                <tr>
+                  <th scope="col">Question</th>
+                  <th scope="col">Reponse</th>
+                </tr>
+              </thead>
+              <tbody id="game2-questions">
+                <tr>
+                  <td>Tonalité majeure avec 3 dièses
+                  </td>
+                  <td>La majeur</td>
+                </tr>
+                <tr>
+                  <td>
+                    Tonalités sans altération à la clé
+                  </td>
+                  <td>Do majeur, La mineur</td>
+                </tr>
+                <tr>
+                  <td>Tonalité mineure avec 1 dièse
+                  </td>
+                  <td>Mi mineur</td>
+                </tr>
+                <tr>
+                  <td>Tonalité majeure avec 4 dièses
+                  </td>
+                  <td>Mi majeur</td>
+                </tr>
+                <tr>
+                  <td>Tonalité mineure avec 2 bémols
+                  </td>
+                  <td>Sol mineur</td>
+                </tr>
+                <tr>
+                  <td>Tonalité majeure avec 5 bémols
+                  </td>
+                  <td>Des majeur</td>
+                </tr>
+                <tr>
+                  <td>Tonalités avec 1 bémol à la clé
+                  </td>
+                  <td>Fa majeur, Ré mineur</td>
+                </tr>
+                <tr>
+                  <td>
+                    Tonalités avec 2 bémols à la clé
+                  </td>
+                  <td>Sib majeur, Sol mineur</td>
+                </tr>
+                <tr>
+                  <td>
+                    Tonalités avec 3 dièses à la clé
+                  </td>
+                  <td>La majeur, Fa# mineur</td>
+                </tr>
+                <tr>
+                  <td>
+                    Tonalités avec 3 bémols à la clé
+                  </td>
+                  <td>Mib majeur, Do mineur</td>
+                </tr>
+              </tbody>
+            </table>
+        </div>
+      </div>
+
+      <div id="game3-content">
+        <h2>Jeu des Relations Tonales</h2>
+        <div class="information">
+          <h6>Informations sur les Relations Tonales</h3>
+            <table class="table table-dark table-striped table-hover">
+              <thead>
+                <tr>
+                  <th scope="col">Question</th>
+                  <th scope="col">Reponse</th>
+                </tr>
+              </thead>
+              <tbody id="game3-questions">
+                <tr>
+                  <td>Relative majeure de La mineur
+                  </td>
+                  <td>Do majeur</td>
+                </tr>
+                <tr>
+                  <td>Relative mineure de Sib majeur
+                  </td>
+                  <td>Sol mineur</td>
+                </tr>
+                <tr>
+                  <td>Relative majeure de Ré mineur
+                  </td>
+                  <td>Fa majeur</td>
+                </tr>
+                <tr>
+                  <td>Relative mineure de Sol majeur
+                  </td>
+                  <td>Mi mineur</td>
+                </tr>
+                <tr>
+                  <td>Relative majeure de Mi mineur
+                  </td>
+                  <td>Sol majeur</td>
+                </tr>
+                <tr>
+                  <td>Relative mineure de Fa majeur
+                  </td>
+                  <td>Ré mineur</td>
+                </tr>
+                <tr>
+                  <td>Relative majeure de Fa# mineur
+                  </td>
+                  <td>La majeur</td>
+                </tr>
+                <tr>
+                  <td>Relative mineure de Mib majeur
+                  </td>
+                  <td>Do mineur</td>
+                </tr>
+                <tr>
+                  <td>Relative majeure de Si mineur
+                  </td>
+                  <td>Ré majeur</td>
+                </tr>
+                <tr>
+                  <td>Relative mineure de Do majeur
+                  </td>
+                  <td>La mineur</td>
+                </tr>
+              </tbody>
+            </table>
+        </div>
+      </div>
+    </div>
+
+
+    <div id="game-actions">
+
+      <div class="d-flex flex-column justify-content-start align-items-center">
+        <p id="tonality-question"></p>
+        <form id="alteration-form">
+          <input type="text" id="user-answer"
+            placeholder="Entrez votre réponse ici" />
+          <button type="submit" id="submit-button" disabled>Soumettre la
+            réponse</button>
+        </form>
+
+        <p id="result"></p>
+        <p id="score">Score: 0</p>
+        <p id="timer">Temps restant: <span id="time-left">30</span> secondes</p>
+        <button id="replay" style="display: none">Rejouer</button>
+        <button id="back-button" onclick="window.location.href='index.html'">
+          Retour à l'Accueil
+        </button>
+
+        <button id="help-button" class="mb-5">
+          Besoin d'aide ?
+        </button>
+
+        <div id="help-div">
+        </div>
+      </div>
+
+
+    </div>
+  </section>
+
+  <!-- Page à propos -->
+  <section class="about">
+    <p>Site realisé pour le projet 1 du cours de technologie d'internet.</p>
+    <p>Ce site n'utilise que JavaScript + BootStrap pour quelques éléments</p>
+  </section>
+
+
+  <!-- Script JS de BS + notre code -->
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="./common.js"></script>
+</body>
+
 </html>
